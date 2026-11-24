@@ -1,0 +1,19 @@
+name: Anonimus Build
+
+# Avvio manuale: scheda "Actions" del tuo fork -> "Anonimus Build" -> "Run workflow".
+# Riusa il workflow di compilazione del progetto (Windows, Android, ecc.) e
+# pubblica i file nella sezione "Releases" del fork con il tag indicato sotto.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    uses: ./.github/workflows/flutter-build.yml
+    secrets: inherit
+    with:
+      upload-artifact: true
+      upload-tag: anonimus-latest
+      publish-update-metadata: false
