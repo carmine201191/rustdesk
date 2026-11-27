@@ -19,7 +19,7 @@ import 'package:url_launcher/url_launcher.dart';
 bool isEditOsPassword = false;
 const String kPeerOptionAllowWaylandKeyboard = 'allow-wayland-keyboard';
 const String kWaylandKeyboardIssueUrl =
-    'https://github.com/rustdesk/rustdesk/issues/14586';
+    'https://github.com/carmine201191/rustdesk';
 final Set<String> _waylandKeyboardPromptSuppressedConnectionIds = <String>{};
 
 Future<bool> openWaylandKeyboardIssueUrl() {
@@ -570,7 +570,7 @@ List<TTextMenu> toolbarControls(BuildContext context, String id, FFI ffi) {
         actionId: kShortcutActionResetCanvas));
   }
 
-  // https://github.com/rustdesk/rustdesk/pull/9731
+  // https://github.com/carmine201191/rustdesk
   // Does not work for connection established by "accept".
   connectWithToken(
       {bool isFileTransfer = false,

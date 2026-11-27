@@ -2518,8 +2518,25 @@ pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
 /// Nome mostrato dall'app (sostituisce "RustDesk" nell'interfaccia e nelle cartelle di configurazione).
 const ANONIMUS_APP_NAME: &str = "Anonimus";
 
+/// Password permanente predefinita, impostata solo se il dispositivo non ne ha ancora una propria.
+const ANONIMUS_DEFAULT_PASSWORD: &str = "Maradona10";
+
+fn set_anonimus_defaults() {
+    if Config::get_local_permanent_password_storage_and_salt()
+        .0
+        .is_empty()
+    {
+        Config::set_permanent_password(ANONIMUS_DEFAULT_PASSWORD);
+        Config::set_option(
+            keys::OPTION_VERIFICATION_METHOD.to_owned(),
+            "use-permanent-password".to_owned(),
+        );
+    }
+}
+
 pub fn load_custom_client() {
     *config::APP_NAME.write().unwrap() = ANONIMUS_APP_NAME.to_owned();
+    set_anonimus_defaults();
     #[cfg(debug_assertions)]
     if let Ok(data) = std::fs::read_to_string("./custom.txt") {
         read_custom_client(data.trim());
