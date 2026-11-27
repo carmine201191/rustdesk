@@ -2531,6 +2531,11 @@ fn set_anonimus_defaults() {
             keys::OPTION_VERIFICATION_METHOD.to_owned(),
             "use-permanent-password".to_owned(),
         );
+        Config::set_option(keys::OPTION_ALLOW_AUTO_DISCONNECT.to_owned(), "Y".to_owned());
+        Config::set_option(
+            keys::OPTION_AUTO_DISCONNECT_TIMEOUT.to_owned(),
+            "2".to_owned(),
+        );
     }
 }
 
